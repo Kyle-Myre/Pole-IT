@@ -14,6 +14,8 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Webbingbrasil\FilamentAdvancedFilter\Filters\DateFilter;
+use Webbingbrasil\FilamentAdvancedFilter\Filters\TextFilter;
 
 class BlogResource extends Resource
 {
@@ -81,7 +83,10 @@ class BlogResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TextFilter::make('user.name'),
+                TextFilter::make('title'),
+                DateFilter::make('created_at'),
+                DateFilter::make('updated_at'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -63,10 +63,11 @@ class ProductResource extends Resource
                     ->columnSpan(3)
                     ->required(),
 
-                Forms\Components\TextInput::make('category')
+                Forms\Components\Select::make('category_id')
+                    ->relationship('categories' , 'id')
                     ->required()
                     ->columnSpanFull()
-                    ->maxLength(255),
+  
 
             ]);
     }
