@@ -17,7 +17,4 @@ class Product extends Model implements HasMedia
         'dimensions','color',
         'discount','category'
     ];
-    final public function order() : BelongsToMany {
-        return $this->belongsToMany(Order::class);
-    }
 }

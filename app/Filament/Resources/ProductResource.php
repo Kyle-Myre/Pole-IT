@@ -57,14 +57,16 @@ class ProductResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('discount')
                     ->numeric(),
-                Forms\Components\TextInput::make('category')
-                    ->required()
-                    ->columnSpanFull()
-                    ->maxLength(255),
+
 
                 FileUpload::make('attachment')
                     ->columnSpan(3)
                     ->required(),
+
+                Forms\Components\TextInput::make('category')
+                    ->required()
+                    ->columnSpanFull()
+                    ->maxLength(255),
 
             ]);
     }

@@ -24,7 +24,10 @@ return new class extends Migration {
             $table->string('color');
 
             $table->integer('discount')->nullable();
-            $table->string('category');
+
+            $table->unsignedBigInteger('category_id');
+
+            $table->foreign('category_id')->on('categories')->references('id')->restrictOnDelete();
 
             $table->timestamps();
         });

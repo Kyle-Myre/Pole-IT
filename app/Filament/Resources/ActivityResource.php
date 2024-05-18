@@ -75,8 +75,7 @@ class ActivityResource extends Resource
 
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('description')
-                    ->searchable(),
+                
                 Tables\Columns\TextColumn::make('activity_type')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('activity_date')
@@ -85,7 +84,9 @@ class ActivityResource extends Resource
             ])
             ->filters([
                 TextFilter::make('user.name'),
-                TextFilter::make('articles_type'),
+                TextFilter::make('title'),
+                TextFilter::make('activity_type'),
+                DateFilter::make('activity_date'),
                 DateFilter::make('created_at'),
                 DateFilter::make('updated_at'),
             ])

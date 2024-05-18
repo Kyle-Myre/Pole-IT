@@ -25,14 +25,17 @@ class BlogResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required(),
 
                 FileUpload::make('attachment')
                     ->image()
                     ->required()
                     ->columnSpanFull(),
+
+
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->required(),
+
 
                 Forms\Components\TextInput::make('title')
                     ->required()
@@ -44,6 +47,8 @@ class BlogResource extends Resource
 
                 Forms\Components\TextInput::make('articles_type')
                     ->required()
+                    ->label('Article Objective')
+                    ->columnSpan(2)
                     ->maxLength(255),
             ]);
     }
@@ -60,9 +65,6 @@ class BlogResource extends Resource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-
-                Tables\Columns\TextColumn::make('descriptions')
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('articles_type')
