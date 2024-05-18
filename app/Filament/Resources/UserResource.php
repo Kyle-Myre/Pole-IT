@@ -9,9 +9,13 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Webbingbrasil\FilamentAdvancedFilter\Filters\DateFilter;
+use Webbingbrasil\FilamentAdvancedFilter\Filters\NumberFilter;
+use Webbingbrasil\FilamentAdvancedFilter\Filters\TextFilter;
 
 class UserResource extends Resource
 {
@@ -26,16 +30,15 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('first_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('last_name')
-                    ->maxLength(255),
+               
                 Forms\Components\TextInput::make('gender')
                     ->maxLength(255),
+
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
                     ->maxLength(255),
+                    
                 Forms\Components\DatePicker::make('birthday'),
                 Forms\Components\TextInput::make('role')
                     ->required()
@@ -53,12 +56,8 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('first_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('last_name')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('name')->searchable(),
+
                 Tables\Columns\TextColumn::make('gender')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
@@ -81,7 +80,15 @@ class UserResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TextFilter::make('name'),
+                TextFilter::make('gender'),
+                TextFilter::make('email'),
+                TextFilter::make('role'),
+                    
+                DateFilter::make('birthday'),
+                DateFilter::make('created_at'),
+                DateFilter::make('updated_at'),
+                NumberFilter::make('quantity'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

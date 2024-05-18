@@ -9,13 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bezhansalleh/filament-language-switch": "^3.1",
         "filament/filament": "^3.2",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "hasnayeen/themes": "^3.0",
         "jeffgreco13/filament-breezy": "^2.4",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
-        "leandrocfe/filament-apex-charts": "^3.1"
+        "leandrocfe/filament-apex-charts": "^3.1",
+        "shuvroroy/filament-spatie-laravel-backup": "^2.1",
+        "webbingbrasil/filament-advancedfilter": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Webbingbrasil\FilamentAdvancedFilter\Filters\DateFilter;
+use Webbingbrasil\FilamentAdvancedFilter\Filters\TextFilter;
 
 class ActivityResource extends Resource
 {
@@ -25,21 +27,30 @@ class ActivityResource extends Resource
             ->schema([
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
+
                     ->required(),
-                Forms\Components\TextInput::make('attachment')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('description')
-                    ->required()
-                    ->maxLength(255),
+
                 Forms\Components\TextInput::make('activity_type')
                     ->required()
                     ->maxLength(255),
+
+                Forms\Components\FileUpload::make('attachment')
+                    ->columnSpan(2)
+                    ->image()
+                    ->required(),
+
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+
+
                 Forms\Components\DatePicker::make('activity_date')
                     ->required(),
+
+                Forms\Components\RichEditor::make('description')
+                    ->required()
+                    ->columnSpan(2)
+                    ->maxLength(255),
             ]);
     }
 
@@ -47,6 +58,9 @@ class ActivityResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('attachment')
+                    ->rounded()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -58,8 +72,7 @@ class ActivityResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('attachment')
-                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
@@ -71,7 +84,10 @@ class ActivityResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                TextFilter::make('user.name'),
+                TextFilter::make('articles_type'),
+                DateFilter::make('created_at'),
+                DateFilter::make('updated_at'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

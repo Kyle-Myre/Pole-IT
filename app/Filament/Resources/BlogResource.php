@@ -2,20 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
-use App\Models\Post;
+use App\Filament\Resources\BlogResource\Pages;
+use App\Filament\Resources\BlogResource\RelationManagers;
+use App\Models\Blog;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PostResource extends Resource
+class BlogResource extends Resource
 {
-    protected static ?string $model = Post::class;
+    protected static ?string $model = Blog::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
@@ -26,15 +28,20 @@ class PostResource extends Resource
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),
-                Forms\Components\FileUpload::make('image')
+
+                FileUpload::make('attachment')
                     ->image()
-                    ->required(),
+                    ->required()
+                    ->columnSpanFull(),
+
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('descriptions')
+
+                Forms\Components\RichEditor::make('descriptions')
                     ->required()
-                    ->maxLength(255),
+                    ->columnSpanFull(),
+
                 Forms\Components\TextInput::make('articles_type')
                     ->required()
                     ->maxLength(255),
@@ -45,20 +52,27 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+
+                ImageColumn::make('attachment')->rounded(),
+
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('image'),
+
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('descriptions')
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('articles_type')
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
@@ -87,9 +101,9 @@ class PostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPosts::route('/'),
-            'create' => Pages\CreatePost::route('/create'),
-            'edit' => Pages\EditPost::route('/{record}/edit'),
+            'index' => Pages\ListBlogs::route('/'),
+            'create' => Pages\CreateBlog::route('/create'),
+            'edit' => Pages\EditBlog::route('/{record}/edit'),
         ];
     }
 }

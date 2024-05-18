@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Support extends Model
 {
@@ -11,4 +13,8 @@ class Support extends Model
         'user_id' , 'object' , 'message'
     ];
     use HasFactory;
+
+    final public function user() : BelongsTo {
+        return $this->belongsTo(User::class);
+    }
 }

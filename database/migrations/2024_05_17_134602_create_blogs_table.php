@@ -10,14 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->on('users')->references('id')
                 ->restrictOnDelete();
 
-            $table->string('image');
+            $table->text('attachment');
             $table->string('title');
             $table->string('descriptions');
 
@@ -32,6 +32,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('blogs');
     }
 };

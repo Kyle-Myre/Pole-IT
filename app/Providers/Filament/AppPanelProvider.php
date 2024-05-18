@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Leandrocfe\FilamentApexCharts\FilamentApexChartsPlugin;
+use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -36,6 +37,7 @@ class AppPanelProvider extends PanelProvider
             ->plugin(
                 \Hasnayeen\Themes\ThemesPlugin::make()
             )
+            ->plugin(FilamentSpatieLaravelBackupPlugin::make())
             ->plugins([
                 FilamentApexChartsPlugin::make()
             ])
