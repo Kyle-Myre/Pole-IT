@@ -30,7 +30,6 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('app')
             ->login()
-            ->registration()
             ->colors([
                 'primary' => Color::Lime,
             ])
@@ -46,9 +45,9 @@ class AppPanelProvider extends PanelProvider
                     shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
                     shouldRegisterNavigation: false, // Adds a main navigation item for the My Profile page (default = false)
                     navigationGroup: 'Settings', // Sets the navigation group for the My Profile page (default = null)
-                    hasAvatars: true, // Enables the avatar upload form component (default = false)
+                    hasAvatars: false, // Enables the avatar upload form component (default = false)
                     slug: 'profile' // Sets the slug for the profile page (default = 'my-profile')
-                )->enableTwoFactorAuthentication(false)
+                )->enableTwoFactorAuthentication(true)
             )
             ->middleware([
                 \Hasnayeen\Themes\Http\Middleware\SetTheme::class

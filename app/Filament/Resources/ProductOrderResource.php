@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductOrderResource\Pages;
 use App\Filament\Resources\ProductOrderResource\RelationManagers;
-use App\Filament\Resources\ProductOrderResource\RelationManagers\ProductsRelationManager;
 use App\Models\ProductOrder;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -33,6 +32,9 @@ class ProductOrderResource extends Resource
                 Forms\Components\TextInput::make('quantity')
                     ->required()
                     ->numeric(),
+                Forms\Components\TextInput::make('total_price')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 
@@ -47,6 +49,9 @@ class ProductOrderResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('quantity')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('total_price')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
