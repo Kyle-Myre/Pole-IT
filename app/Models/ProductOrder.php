@@ -16,6 +16,7 @@ class ProductOrder extends Model
         'order_id',
         'product_id',
         'quantity',
+        'total_price'
     ];
 
     protected $table = "order_product";

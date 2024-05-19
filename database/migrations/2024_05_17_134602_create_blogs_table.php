@@ -19,7 +19,7 @@ return new class extends Migration {
 
             $table->text('attachment');
             $table->string('title');
-            $table->string('descriptions');
+            $table->text('descriptions');
 
             $table->string('articles_type');
 

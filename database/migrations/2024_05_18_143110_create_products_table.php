@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->float('price');
             $table->integer('quantity');
 
-            $table->string('description');
+            $table->text('description');
             $table->string('attachment');
 
             $table->string('dimensions');

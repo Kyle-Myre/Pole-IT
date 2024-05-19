@@ -22,7 +22,7 @@ return new class extends Migration {
 
             $table->string('attachment');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('activity_type');
 
             $table->date('activity_date');

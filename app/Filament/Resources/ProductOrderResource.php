@@ -3,15 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductOrderResource\Pages;
-use App\Filament\Resources\ProductOrderResource\RelationManagers;
+use App\Models\Product;
 use App\Models\ProductOrder;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductOrderResource extends Resource
 {
@@ -23,18 +23,38 @@ class ProductOrderResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('order_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('product_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('order_id')
+                    ->relationship('orders', 'id')
+                    ->required(),
+                Forms\Components\Select::make('product_id')
+                    ->relationship('products', 'id')
+                    ->live()
+                    ->afterStateUpdated(function ($state, Set $set, Get $get) {
+                        $set('total_price', $get('quantity') * Product::find($state)->price);
+                    })
+                    ->required(),
                 Forms\Components\TextInput::make('quantity')
                     ->required()
+                    ->live()
+                    ->minValue(1)
+                    ->afterStateUpdated(function ($state, Set $set, Get $get) {
+                        $set('total_price', $state * Product::find($get('product_id'))->price);
+                    })
+                    ->maxValue(function (Set $set, Get $get) {
+                        $value = $get('product_id');
+
+                        if ($value) {
+                            return Product::find($value)->quantity;
+                        }
+                        return Product::find(1)->quantity;
+                    })
                     ->numeric(),
                 Forms\Components\TextInput::make('total_price')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->disabled()
+                    ->dehydrated(true)
+                    ->live(),
             ]);
     }
 
