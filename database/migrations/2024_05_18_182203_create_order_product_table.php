@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_order', function (Blueprint $table) {
+        Schema::create('order_product', function (Blueprint $table) {
             $table->id();
+            
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
-
             $table->foreign('product_id')->on('products')->references('id');
             $table->foreign('order_id')->on('orders')->references('id');
-
             $table->integer('quantity');
+
+            $table->integer('total_price');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

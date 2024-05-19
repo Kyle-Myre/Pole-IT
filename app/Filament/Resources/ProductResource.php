@@ -6,20 +6,12 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Actions\ExportBulkAction;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\DateFilter;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\NumberFilter;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\TextFilter;
@@ -37,38 +29,39 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
                     ->prefix('$'),
+
                 Forms\Components\TextInput::make('quantity')
+                    ->columnSpan(2)
                     ->required()
                     ->numeric(),
 
                 Forms\Components\RichEditor::make('description')
+                    ->columnSpan(2)
                     ->required()
-                    ->columnSpan(3)
-                    ->maxLength(500),
+                    ->maxLength(255),
+
+                Forms\Components\FileUpload::make('attachment')->image()
+                    ->columnSpan(2)
+                    ->required(),
+
 
                 Forms\Components\TextInput::make('dimensions')
                     ->required()
                     ->maxLength(255),
+
                 Forms\Components\ColorPicker::make('color')
                     ->required(),
+
                 Forms\Components\TextInput::make('discount')
                     ->numeric(),
-
-
-                FileUpload::make('attachment')
-                    ->columnSpan(3)
-                    ->required(),
-
                 Forms\Components\Select::make('category_id')
-                    ->relationship('categories' , 'id')
-                    ->required()
-                    ->columnSpanFull()
-  
-
+                    ->relationship('category', 'title')
+                    ->required(),
             ]);
     }
 
@@ -76,58 +69,46 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('attachment')
-                    ->alignCenter()
+
+                Tables\Columns\ImageColumn::make('attachment')
+                    ->width(65)
+                    ->height(65)
                     ->rounded()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('name')
-                    ->alignCenter()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
-                    ->alignCenter()
                     ->money()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('quantity')
-                    ->alignCenter()
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('description')
-                    ->alignCenter()
-                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('dimensions')
-                    ->alignCenter()
                     ->searchable(),
+
                 Tables\Columns\ColorColumn::make('color')
-                    ->alignCenter()
                     ->searchable(),
-
+                    
                 Tables\Columns\TextColumn::make('discount')
-                    ->alignCenter()
                     ->numeric()
-                    ->sortable()
-                    ->default("0 %"),
-
-                Tables\Columns\TextColumn::make('category')
-                    ->alignCenter()
-                    ->searchable(),
-
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('category.title')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->alignCenter()
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->alignCenter()
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 TextFilter::make('name'),
-                TextFilter::make('category'),
+                TextFilter::make('category.name'),
                 TextFilter::make('dimensions'),
                 TextFilter::make('discount'),
                 DateFilter::make('created_at'),

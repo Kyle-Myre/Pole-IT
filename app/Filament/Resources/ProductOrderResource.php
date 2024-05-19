@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SupportResource\Pages;
-use App\Filament\Resources\SupportResource\RelationManagers;
-use App\Models\Support;
+use App\Filament\Resources\ProductOrderResource\Pages;
+use App\Filament\Resources\ProductOrderResource\RelationManagers;
+use App\Filament\Resources\ProductOrderResource\RelationManagers\ProductsRelationManager;
+use App\Models\ProductOrder;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,26 +14,25 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SupportResource extends Resource
+class ProductOrderResource extends Resource
 {
-    protected static ?string $model = Support::class;
+    protected static ?string $model = ProductOrder::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required(),
-                Forms\Components\TextInput::make('object')
+                Forms\Components\TextInput::make('order_id')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\RichEditor::make('message')
+                    ->numeric(),
+                Forms\Components\TextInput::make('product_id')
                     ->required()
-                    ->columnSpan(2)
-                    ->maxLength(255),
+                    ->numeric(),
+                Forms\Components\TextInput::make('quantity')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 
@@ -40,6 +40,15 @@ class SupportResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('order_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('product_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('quantity')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -48,13 +57,6 @@ class SupportResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('object')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('message')
-                    ->searchable(),
             ])
             ->filters([
                 //
@@ -79,9 +81,9 @@ class SupportResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSupports::route('/'),
-            'create' => Pages\CreateSupport::route('/create'),
-            'edit' => Pages\EditSupport::route('/{record}/edit'),
+            'index' => Pages\ListProductOrders::route('/'),
+            'create' => Pages\CreateProductOrder::route('/create'),
+            'edit' => Pages\EditProductOrder::route('/{record}/edit'),
         ];
     }
 }

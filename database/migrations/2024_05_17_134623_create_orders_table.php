@@ -14,11 +14,18 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
-
             $table->foreign('user_id')->on('users')->references('id')
                 ->restrictOnDelete();
-
-            $table->string('email');
+            $table->enum(
+                "status",
+                [
+                    "delivered" => "delivered",
+                    "pending" => "pending",
+                    "canceled" => "canceled"
+                ]
+            );
+            $table->enum("payment_method", ["stripe" => "stripe"]);
+            $table->string('email')->nullable();
         });
     }
 
