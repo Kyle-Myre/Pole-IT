@@ -46,7 +46,7 @@ class ProductOrderResource extends Resource
                         if ($value) {
                             return Product::find($value)->quantity;
                         }
-                        return Product::find(1)->quantity;
+                        return Product::find(1)?->quantity;
                     })
                     ->numeric(),
                 Forms\Components\TextInput::make('total_price')
