@@ -40,12 +40,13 @@ class ProductResource extends Resource
                     ->required()
                     ->numeric(),
 
-                Forms\Components\RichEditor::make('description')
+                Forms\Components\Textarea::make('description')
                     ->columnSpan(2)
                     ->required()
                     ->maxLength(255),
 
                 Forms\Components\FileUpload::make('attachment')->image()
+                    ->maxWidth(512)
                     ->columnSpan(2)
                     ->required(),
 

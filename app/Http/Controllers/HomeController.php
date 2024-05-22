@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view("home", ['products' => Product::all()]);
+        $random = Product::inRandomOrder()->where('discount' , '<>' , null)->first();
+        return view("e-commerce", [ 'products' => Product::all()->take(3) , 'randomProduct' =>  $random]);
     }
 }
