@@ -42,12 +42,15 @@
                     @endif
                      </p>
                       <p class="card-text">
-                        <form action="{{route('add-to-cart' , ['product' => $product->id])}}" class="d-flex gap-2" method="POST">
+
+                        <form  method="POST" action="{{route('add-to-cart' , ['product' => $product->id])}}" class="d-flex gap-2">
                             @csrf
                             @method('POST')
+                            <input type="text" class="input-group-text" name="id" value="{{$product->id}}" id="" disabled>
                             <input type="number" class="input-group-text" name="quantity" min="1" max="{{$product->quantity}}">
                             <button type="submit" class="btn btn-primary"><span><i class="bi bi-cart-check"></i></span>Add To Cart</button>
                         </form>
+
                       </p>
                     </div>
                   </div>

@@ -16,12 +16,17 @@ class AuthController extends Controller
     final public function authentificate(Request $request) {
         $validate = $request->validate([
             "email"=> "required",
-            "currentPassword"=> "required|min:8",
-            "confirmPassword"=> "required|min:8|same:currentPassword"
+            "password"=> "required|min:8",
         ]);
+        if (Auth::attempt($request->only('email' , 'password'))) {
+            return redirect()->route('e-commerce');
+        } else {
+            return redirect()->route('login')->with(['error' => 'Unable To Connect']);
+        }
     }
     final public function logout() {
         Session::flush();
+        Auth::logout();
         return redirect()->route('login');
     }
     final public function register() {
