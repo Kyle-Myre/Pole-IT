@@ -25,8 +25,10 @@ class AuthController extends Controller
         }
     }
     final public function logout() {
+        
         Session::flush();
         Auth::logout();
+
         return redirect()->route('login');
     }
     final public function register() {
