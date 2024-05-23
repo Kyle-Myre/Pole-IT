@@ -16,7 +16,7 @@
             @foreach ($products as $product)
 
             <a class="card d-flex flex-column text-decoration-none text-black" 
-                href="{{route('product-show' , ['product' => $product->id] )}}"  style="width: 18rem;"
+                href="{{route('product-show' , ['id' => $product->id] )}}"  style="width: 18rem;"
             >
 
                 <img src="{{Storage::url($product->attachment)}}" class="card-img-top" alt="...">
