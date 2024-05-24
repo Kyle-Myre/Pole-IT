@@ -6,10 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
     <link href="{{url('lib/animate/animate.min.css')}}" rel="stylesheet">
     <link href="{{url('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-
     <link href="{{url('css/bootstrap.home.min.css')}}" rel="stylesheet">
-    <link href="{{url('css/style.css')}}" rel="stylesheet">
-
     <title>Pole IT</title>
 </head>
 <nav
@@ -23,16 +20,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
-            <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="service.html" class="nav-item nav-link">Blogger</a>
+            <a href="{{route('home')}}" class="nav-item nav-link active">Home</a>
+            <a href="{{route('about')}}" class="nav-item nav-link">About</a>
+            <a href="{{route('home')}}" class="nav-item nav-link">Blogger</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu fade-up m-0">
                     <a href="price.html" class="dropdown-item">Day/night Activities</a>
-                    <a href="feature.html" class="dropdown-item">different activities</a>
-                    <a href="testimonial.html" class="dropdown-item">merch</a>
-                    <a href="team.html" class="dropdown-item">Our Team</a>
+                    <a href="{{route('home')}}" class="dropdown-item">different activities</a>
+                    <a href="{{route('e-commerce')}}" class="dropdown-item">Merch</a>
+                    <a href="{{route('home')}}" class="dropdown-item">Our Team</a>
                 </div>
             </div>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
