@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Models\Product;
@@ -67,6 +68,9 @@ Route::get('/home', [
     HomeController::class,'home'
 ])->name('home');
 
+Route::get('/blog' , [
+    BlogController::class , 'index'
+])->name('blog');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -83,6 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/logout", [
         AuthController::class, "logout"
     ])->name("logout");
+
+    
 
 
     Route::get('/goodies/product/show/id={id}' , function ($id) {
