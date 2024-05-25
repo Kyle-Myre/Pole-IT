@@ -12,11 +12,8 @@ return new class extends Migration {
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
 
-            $table->foreign('user_id')->on('users')->references('id')
-                ->restrictOnDelete();
-
+          
             $table->text('attachment');
             $table->string('title');
             $table->text('descriptions');

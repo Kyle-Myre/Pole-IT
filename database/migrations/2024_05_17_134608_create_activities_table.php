@@ -14,12 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger('user_id');
-
-            $table->foreign('user_id')->on('users')->references('id')
-                ->restrictOnDelete();
-
-
             $table->string('attachment');
             $table->string('title');
             $table->text('description');

@@ -10,10 +10,9 @@ class BlogController extends Controller
 {
     final public function index() {
 
-        $blogs = Blog::latest()->inRandomOrder()->limit(3)->get();
-
-        $activities = Activity::latest()->inRandomOrder()->limit(3)->get();
-
+        $blogs = Blog::inRandomOrder()->orderByDesc('updated_at')->limit(3)->get();
+        $activities = Activity::inRandomOrder()->orderByDesc('updated_at')->limit(3)->get();
+        
         return view("home.blog" , ["blogs" => $blogs , "activities" => $activities]);
     }
 }

@@ -13,10 +13,6 @@ class Blog extends Model implements HasMedia
     use HasFactory , InteractsWithMedia;
 
     protected $fillable = [
-        'user_id','attachment','title','descriptions','articles_type'
+        'attachment','title','descriptions','articles_type'
     ];
-
-    final public function user() : BelongsTo {
-        return $this->belongsTo(User::class);
-    }
 }
