@@ -31,7 +31,12 @@
                     <a href="{{route('goodies')}}" class="dropdown-item">Merch</a>
                 </div>
             </div>
-            <a href="" class="nav-item nav-link">Contact</a>
+            @if(Auth::check())
+            <a href="{{route('logout')}}" class="nav-item nav-link text-danger">Log out</a>
+            @else
+                <a href="{{route('login')}}" class="nav-item nav-link">Sign in</a>
+                <a href="{{route('register')}}" class="nav-item nav-link">Sign up</a>
+            @endif
         </div>
     </div>
 </nav>

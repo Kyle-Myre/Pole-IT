@@ -1,0 +1,6 @@
+projectKey=Pole-IT
+serverUrl=http://127.0.0.1:9000
+serverVersion=10.5.1.90531
+dashboardUrl=http://127.0.0.1:9000/dashboard?id=Pole-IT
+ceTaskId=46157a46-4882-49e4-88d0-c2d0f3c82f28
+ceTaskUrl=http://127.0.0.1:9000/api/ce/task?id=46157a46-4882-49e4-88d0-c2d0f3c82f28

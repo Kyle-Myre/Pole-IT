@@ -25,20 +25,22 @@
             </div>
             <div class="form-group">
               <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-              <input type="password" name="password" id="pass" placeholder="Password" value="{{old('pass')}}" />
-            </div>
-            <div class="form-group form-button">
-              <input type="submit" name="signup" id="signup" class="form-submit" value="Log in" />
-            </div>
-            <div class="form-group form-button">
-              @foreach ($errors->all() as $error)
-                <span><strong class="text-danger">{{$error}}</strong><br></span>
-              @endforeach
-              @if (session('error'))
-                {{session('error')}}
-              @endif
+              <input type="password" name="password" id="pass" placeholder="Password" value="{{old('password')}}" />
             </div>
             
+            <div class="form-group form-button">
+              <input type="submit" name="signup" id="signup" class="form-submit" value="Log in" />
+              <a href="{{route('home')}}">Return Home</a>
+            </div>
+
+            <div class="form-group form-button">
+              @foreach ($errors->all() as $error)
+                <span class="text-danger">{{$error}}<br></span>
+              @endforeach
+              @if (session('error'))
+                <div class="text-danger">{{session('error')}}</div>
+              @endif
+            </div>
           </form>
         </div>
         <div class="signup-image">

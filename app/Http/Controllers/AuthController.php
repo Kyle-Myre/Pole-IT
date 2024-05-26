@@ -26,18 +26,20 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             return redirect()->route('e-commerce');
         } else {
-            return redirect()->route('login')->with(['error' => 'Unable To Connect']);
+            return redirect()->route('login')->with(
+                [
+                    'error' => 'Authentification Error : Unable to connect to your account , make sure your credientials are correct or the users exists'
+                ]
+            );
         }
     }
 
     /** logout user from session */
     final public function logout()
     {
-
         Session::flush();
         Auth::logout();
-
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     /** Abstract Authentificate method that returns a sign up page */

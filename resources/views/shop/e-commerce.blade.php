@@ -170,7 +170,6 @@
               <div class="col-md-6">
                 <div class="banner-content">
                   <h1 class="display-2 text-uppercase text-dark pb-5">Our Products Are Great.</h1>
-                  <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Products</a>
                 </div>
               </div>
               <div class="col-md-5">
@@ -187,7 +186,6 @@
               <div class="col-md-6">
                 <div class="banner-content">
                   <h1 class="display-2 text-uppercase text-dark pb-5">Technology Hack You Won't Get</h1>
-                  <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Products</a>
                 </div>
               </div>
               <div class="col-md-5">
@@ -238,7 +236,9 @@
             </div>
             <div class="icon-box-content">
               <h3 class="card-title text-uppercase text-dark">Quality guarantee</h3>
-              <p>Dolor sit amet orem ipsu mcons ectetur adipi elit.</p>
+              <p>Imagine a knight in shining armor, but instead of rescuing a princess, they're here to ensure your new
+                smartphone is built to last.
+                .</p>
             </div>
           </div>
         </div>
@@ -275,9 +275,9 @@
     <div class="container">
       <div class="row">
         <div class="display-header d-flex justify-content-between pb-3">
-          <h2 class="display-7 text-dark text-uppercase">Mobile Products</h2>
+          <h2 class="display-7 text-dark text-uppercase">Products Overview</h2>
           <div class="btn-right">
-            <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+            <a href="{{route('products')}}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
           </div>
         </div>
 
@@ -288,20 +288,15 @@
             <div class="swiper-slide">
               <div class="product-card position-relative">
                 <div class="image-holder">
+                  @if ($product->attachment)
                   <img src="{{Storage::url($product->attachment)}}" alt="product-item" class="img-fluid">
-                </div>
-                <div class="cart-concern position-absolute">
-                  <div class="cart-button d-flex">
-                    <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline">
-                        <use xlink:href="#cart-outline"></use>
-                      </svg></a>
-                  </div>
+                  @endif
                 </div>
                 <div class="card-detail d-flex justify-content-between align-items-center pt-3">
                   <h3 class="card-title text-uppercase">
-                    <a href="#" class="text-decoration-none">{{$product->name}}</a>
+                    <a class="text-decoration-none">{{$product->name}}</a>
                   </h3>
-                  <span class="item-price">{{$product->price}}</span>
+                  <span class="item-price">{{$product->price}} $</span>
                 </div>
               </div>
             </div>
@@ -314,6 +309,7 @@
     <div class="swiper-pagination position-absolute text-center"></div>
   </section>
 
+
   <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge"
     style="background-image:url({{Storage::url($randomProduct->attachment)}});background-position: right; background-repeat: no-repeat;">
     <div class="row d-flex flex-wrap align-items-center">
@@ -325,10 +321,10 @@
         </div>
       </div>
       <div class="col-md-6 col-sm-12">
-
       </div>
     </div>
   </section>
+
 
   <section id="testimonials" class="position-relative">
     <div class="container">

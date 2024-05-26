@@ -40,8 +40,12 @@
                
                <tr>
                     <td class="gap-1">
-                        <a href="{{route('products')}}" class="btn btn-outline-info">Return</a>
-                        <a href="{{route('checkout')}}" class="btn btn-outline-primary">Check out</a>
+                        <a href="{{route('products')}}" class="btn btn-info">Return</a>
+                        @if (count(session('cart')))
+                            <a href="{{route('checkout')}}" class="btn btn-primary">Check out</a>
+                        @else
+                            <a href="{{route('checkout')}}" class="btn btn-primary disabled" @disabled(true)>Check out</a>
+                        @endif
                     </td>
                     <td colspan="5">
                         Total : {{session('total') }} $

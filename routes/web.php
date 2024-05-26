@@ -14,7 +14,7 @@ Route::get('/login', [
 
 Route::get('/', function () {
     return redirect('/home');
-})->name('login');
+});
 
 Route::post('/login', [
     AuthController::class, 'authentificate',
