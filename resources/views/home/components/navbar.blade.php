@@ -29,7 +29,6 @@
                     <a href="{{route('blog')}}" class="dropdown-item">Day/night Activities</a>
                     <a href="{{route('blog')}}" class="dropdown-item">different activities</a>
                     <a href="{{route('e-commerce')}}" class="dropdown-item">Merch</a>
-                    <a href="{{route('team')}}" class="dropdown-item">Our Team</a>
                 </div>
             </div>
             <a href="" class="nav-item nav-link">Contact</a>
