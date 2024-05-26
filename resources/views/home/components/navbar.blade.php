@@ -11,7 +11,7 @@
 </head>
 <nav
     class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary-perso sticky-top p-0">
-    <a href="index.html" class="navbar-brand navbar-logo-background d-flex align-items-center px-4 px-lg-5">
+    <a href="{{route('home')}}" class="navbar-brand navbar-logo-background d-flex align-items-center px-4 px-lg-5">
         <img src="{{url('images/new_pole_it_logo-removebg-preview.png')}}" alt="Logo" style="height: 90px;">
         <!-- Logo image -->
     </a>
@@ -28,7 +28,7 @@
                 <div class="dropdown-menu fade-up m-0">
                     <a href="{{route('blog')}}" class="dropdown-item">Day/night Activities</a>
                     <a href="{{route('blog')}}" class="dropdown-item">different activities</a>
-                    <a href="{{route('e-commerce')}}" class="dropdown-item">Merch</a>
+                    <a href="{{route('goodies')}}" class="dropdown-item">Merch</a>
                 </div>
             </div>
             <a href="" class="nav-item nav-link">Contact</a>

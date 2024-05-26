@@ -33,10 +33,6 @@ Route::get('/about', [
     HomeController::class, 'about',
 ])->name('about');
 
-Route::get('/contact', [
-    HomeController::class, 'contact',
-])->name('contact');
-
 Route::get('/error', [
     HomeController::class, 'error',
 ])->name('error');
@@ -52,10 +48,6 @@ Route::get('/price', [
 Route::get('/service', [
     HomeController::class, 'service',
 ])->name('service');
-
-Route::get('/team', [
-    HomeController::class, 'team',
-])->name('team');
 
 Route::get('/goodies', [
     HomeController::class, 'shop',

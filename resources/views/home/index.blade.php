@@ -20,23 +20,6 @@
                     </div>
                 </div>
             </div>
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img1/interstellar.jpg" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, .5);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-10 col-lg-8">
-                                <h5 class="text-white text-uppercase mb-3 animated slideInDown"></h5>
-                                <h1 class="display-3 text-white animated slideInDown mb-4">Discover the Unknown
-                                    Join us at PoleIt for a Journey Beyond the Stars</h1>
-                                <p class="fs-5 fw-medium text-white mb-4 pb-2"></p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"></a>
-                                <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- Carousel End -->
