@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\DateFilter;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\NumberFilter;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\TextFilter;
@@ -49,7 +46,6 @@ class ProductResource extends Resource
                     ->maxWidth(512)
                     ->columnSpan(2)
                     ->required(),
-
 
                 Forms\Components\TextInput::make('dimensions')
                     ->required()
@@ -91,7 +87,7 @@ class ProductResource extends Resource
 
                 Tables\Columns\ColorColumn::make('color')
                     ->searchable(),
-                    
+
                 Tables\Columns\TextColumn::make('discount')
                     ->numeric()
                     ->sortable(),

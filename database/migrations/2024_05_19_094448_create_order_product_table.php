@@ -17,7 +17,7 @@ class CreateOrderProductTable extends Migration
             $table->foreignId('order_id')->onDelete('cascade');
             $table->foreignId('product_id')->onDelete('cascade');
             $table->integer('quanity');
-            $table->index(['order_id' , 'product_id']);
+            $table->index(['order_id', 'product_id']);
             $table->float('total_amount');
         });
     }

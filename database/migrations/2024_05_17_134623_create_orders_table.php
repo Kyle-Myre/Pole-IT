@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -17,14 +18,14 @@ return new class extends Migration {
             $table->foreign('user_id')->on('users')->references('id')
                 ->restrictOnDelete();
             $table->enum(
-                "status",
+                'status',
                 [
-                    "delivered" => "delivered",
-                    "pending" => "pending",
-                    "canceled" => "canceled"
+                    'delivered' => 'delivered',
+                    'pending' => 'pending',
+                    'canceled' => 'canceled',
                 ]
             );
-            $table->enum("payment_method", ["stripe" => "stripe"]);
+            $table->enum('payment_method', ['stripe' => 'stripe']);
             $table->string('email')->nullable();
         });
     }

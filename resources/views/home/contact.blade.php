@@ -2,11 +2,7 @@
 <html lang="en">
 
 @include('home.components.navbar')
-
 <body>
-  
-
-
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
         <div class="container py-5">
@@ -20,10 +16,6 @@
             </nav>
         </div>
     </div>
-    <!-- Page Header End -->
-
-
-    <!-- Contact Start -->
     <div class="container-fluid overflow-hidden py-5 px-lg-0">
         <div class="container contact-page py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">

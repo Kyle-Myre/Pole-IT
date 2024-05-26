@@ -12,12 +12,12 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id' , 'email' , 'status' , 'payment_method',
+        'user_id', 'email', 'status', 'payment_method',
     ];
 
-    final public function product() : BelongsToMany
+    final public function product(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class , 'order_product');
+        return $this->belongsToMany(Product::class, 'order_product');
     }
 
     final public function user(): BelongsTo

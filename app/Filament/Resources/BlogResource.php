@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BlogResource\Pages;
-use App\Filament\Resources\BlogResource\RelationManagers;
 use App\Models\Blog;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
@@ -12,8 +11,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\DateFilter;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\TextFilter;
 
@@ -52,7 +49,7 @@ class BlogResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table   
+        return $table
             ->columns([
 
                 ImageColumn::make('attachment')->rounded(),

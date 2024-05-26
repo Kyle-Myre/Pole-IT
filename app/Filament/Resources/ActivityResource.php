@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ActivityResource\Pages;
-use App\Filament\Resources\ActivityResource\RelationManagers;
 use App\Models\Activity;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\DateFilter;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\TextFilter;
 
@@ -25,7 +22,7 @@ class ActivityResource extends Resource
     {
         return $form
             ->schema([
-                
+
                 Forms\Components\TextInput::make('activity_type')
                     ->required()
                     ->columnSpan(2)
@@ -39,7 +36,6 @@ class ActivityResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-
 
                 Forms\Components\DatePicker::make('activity_date')
                     ->required(),
@@ -72,7 +68,7 @@ class ActivityResource extends Resource
 
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                
+
                 Tables\Columns\TextColumn::make('activity_type')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('activity_date')

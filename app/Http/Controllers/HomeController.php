@@ -3,63 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * return the shop page
+     */
     public function shop()
     {
-        $random = Product::inRandomOrder()->where('discount' , '<>' , null)->first();
-        return view("shop.e-commerce", [ 'products' => Product::all()->take(3) , 'randomProduct' =>  $random]);
+        $random = Product::inRandomOrder()->where('discount', '<>', null)->first();
+
+        return view('shop.e-commerce', ['products' => Product::all()->take(3), 'randomProduct' => $random]);
     }
 
+    /**
+     * return the products page
+     */
     public function products()
     {
-        return view("shop.products", [ 'products' => Product::all()]);
+        return view('shop.products', ['products' => Product::all()]);
     }
 
     public function home()
     {
-        return view("home.index");
+        return view('home.index');
     }
 
+    /**
+     * return the home page
+     */
     public function about()
     {
-        return view("home.about");
+        return view('home.about');
     }
 
     public function contact()
     {
-        return view("home.contact");
+        return view('home.contact');
     }
 
+    /**
+     * return the feature page
+     */
     public function feature()
     {
-        return view("home.feature");
+        return view('home.feature');
     }
 
-    public function price()
-    {
-        return view("home.price");
-    }
-
-    public function service()
-    {
-        return view("home.service");
-    }
-
+    /**
+     * return the price page
+     */
     public function team()
     {
-        return view("home.team");
-    }
-
-    public function error()
-    {
-        return view("home.404");
-    }
-
-    public function quote()
-    {
-        return view("home.quote");
+        return view('home.team');
     }
 }

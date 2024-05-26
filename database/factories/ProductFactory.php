@@ -18,15 +18,15 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" => $this->faker->name(),
-            "price" => $this->faker->numberBetween(200 , 200000),
-            "quantity" => $this->faker->numberBetween(10 , 200),
-            "description" => $this->faker->text(),
-            "attachment" => $this->faker->text(),
-            "dimensions" => $this->faker->text(),
-            "color" => $this->faker->hexColor(),
-            "discount" => $this->faker->numberBetween(),
-            "category_id" => $this->faker->randomElement(Category::all()),
+            'name' => $this->faker->name(),
+            'price' => $this->faker->numberBetween(200, 200000),
+            'quantity' => $this->faker->numberBetween(10, 200),
+            'description' => $this->faker->text(),
+            'attachment' => $this->faker->text(),
+            'dimensions' => $this->faker->text(),
+            'color' => $this->faker->hexColor(),
+            'discount' => $this->faker->numberBetween(),
+            'category_id' => $this->faker->randomElement(Category::all()),
         ];
     }
 }

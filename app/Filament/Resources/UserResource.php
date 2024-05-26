@@ -3,16 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\DateFilter;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\NumberFilter;
 use Webbingbrasil\FilamentAdvancedFilter\Filters\TextFilter;
@@ -30,7 +26,7 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-               
+
                 Forms\Components\TextInput::make('gender')
                     ->maxLength(255),
 
@@ -38,7 +34,7 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                    
+
                 Forms\Components\DatePicker::make('birthday'),
                 Forms\Components\TextInput::make('role')
                     ->required()
@@ -84,7 +80,7 @@ class UserResource extends Resource
                 TextFilter::make('gender'),
                 TextFilter::make('email'),
                 TextFilter::make('role'),
-                    
+
                 DateFilter::make('birthday'),
                 DateFilter::make('created_at'),
                 DateFilter::make('updated_at'),

@@ -18,8 +18,8 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            "user_id" => $this->faker->randomElement(User::all()),
-            "email" => $this->faker->safeEmail(),
+            'user_id' => $this->faker->randomElement(User::all()),
+            'email' => $this->faker->safeEmail(),
         ];
     }
 }

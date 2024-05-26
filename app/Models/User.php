@@ -4,27 +4,24 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Cashier\Billable;
 use Illuminate\Support\Facades\Storage;
-use Filament\Models\Contracts\HasAvatar;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar
 {
-    use HasFactory, Notifiable , TwoFactorAuthenticatable , Billable;
+    use Billable, HasFactory , Notifiable , TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-
-
-
     public function getFilamentAvatarUrl(): ?string
     {
         return $this->avatar_url ? Storage::url($this->avatar_url) : null;
@@ -39,7 +36,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'email',
         'password',
         'role',
-        'avatar_url'
+        'avatar_url',
     ];
 
     /**
@@ -64,21 +61,19 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
             'password' => 'hashed',
         ];
     }
-    /**
-     *
-     * @param Panel $panel
-     * @return bool
-     */
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->isAdmin();
     }
 
-    final public function isAdmin() : bool {
+    final public function isAdmin(): bool
+    {
         return $this->role == 'ADMIN';
     }
 
-    final public function isUser() : bool {
+    final public function isUser(): bool
+    {
         return $this->role == 'USER';
     }
 }

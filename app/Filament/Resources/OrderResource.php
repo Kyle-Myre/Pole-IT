@@ -24,13 +24,11 @@ class OrderResource extends Resource
                     ->relationship('user', 'name')
                     ->required(),
 
-
                 Forms\Components\ToggleButtons::make('payment_method')
                     ->options([
-                        "stripe" => "Stripe",
+                        'stripe' => 'Stripe',
 
                     ])->default('stripe')->inline(),
-
 
                 Forms\Components\TextInput::make('email')
                     ->email()
@@ -38,14 +36,14 @@ class OrderResource extends Resource
 
                 Forms\Components\ToggleButtons::make('status')
                     ->options([
-                        "delivered" => "Delivered",
-                        "pending" => "Pending",
-                        "canceled" => "Canceled"
+                        'delivered' => 'Delivered',
+                        'pending' => 'Pending',
+                        'canceled' => 'Canceled',
                     ])->colors([
-                            "delivered" => "success",
-                            "pending" => "warning",
-                            "canceled" => "danger"
-                        ])->default('new')->inline(),
+                        'delivered' => 'success',
+                        'pending' => 'warning',
+                        'canceled' => 'danger',
+                    ])->default('new')->inline(),
             ]);
     }
 
@@ -69,16 +67,16 @@ class OrderResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->color(fn (string $state):string => match($state) {
-                        "delivered" => "success",
-                        "pending" => "warning",
-                        "canceled" => "danger"
-                    })->icon(fn (string $state):string => match($state) {
-                        "delivered" => "heroicon-m-sparkles",
-                        "pending" => "heroicon-m-arrow-path",
-                        "canceled" => "heroicon-m-x-circle"
+                    ->color(fn (string $state): string => match ($state) {
+                        'delivered' => 'success',
+                        'pending' => 'warning',
+                        'canceled' => 'danger'
+                    })->icon(fn (string $state): string => match ($state) {
+                        'delivered' => 'heroicon-m-sparkles',
+                        'pending' => 'heroicon-m-arrow-path',
+                        'canceled' => 'heroicon-m-x-circle'
                     })
-                ->alignCenter(),
+                    ->alignCenter(),
 
                 Tables\Columns\TextColumn::make('payment_method')->alignCenter(),
                 Tables\Columns\TextColumn::make('email')->alignCenter()

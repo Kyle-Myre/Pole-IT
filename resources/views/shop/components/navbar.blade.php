@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0 align-items-center">
             <a href="{{route('home')}}" class="nav-item nav-link active">Home</a>
-            <a href="{{route('products')}}" class="nav-item nav-link active">Products</a>
+            <a href="{{route('goodies')}}" class="nav-item nav-link active">Products</a>
             @if(Auth::check())
             <a href="{{route('logout')}}" class="nav-item nav-link text-danger">Log out</a>
             @else

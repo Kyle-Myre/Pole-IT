@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
-use Auth;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 
 class ShopController extends Controller
 {
-
+    /**
+     * return the cart page
+     */
     final public function cart()
     {
         return view('shop.cart-list');
     }
 
+    /**
+     * Takes up the session variable cart and calculates every product with discount included
+     * if the cart is empty the total becomes *0*
+     */
     final public function calculateTotal()
     {
 
@@ -33,6 +38,9 @@ class ShopController extends Controller
         session()->put('total', $total);
     }
 
+    /**
+     * Adds a product to the shopping cart
+     */
     final public function addToCart($id)
     {
         $product = Product::findOrFail($id);
@@ -41,15 +49,15 @@ class ShopController extends Controller
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
-                "name" => $product->name,
-                "price" => $product->price,
-                "quantity" => 1,
-                "description" => $product->description,
-                "attachment" => $product->attachment,
-                "dimensions" => $product->dimensions,
-                "color" => $product->color,
-                "discount" => $product->discount,
-                "category" => $product->category->title,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => 1,
+                'description' => $product->description,
+                'attachment' => $product->attachment,
+                'dimensions' => $product->dimensions,
+                'color' => $product->color,
+                'discount' => $product->discount,
+                'category' => $product->category->title,
             ];
         }
 
@@ -59,6 +67,9 @@ class ShopController extends Controller
         return redirect()->route('products');
     }
 
+    /**
+     * Removes a product from the session
+     */
     public function delete(Request $request)
     {
         $cart = session()->get('cart');
@@ -66,13 +77,19 @@ class ShopController extends Controller
             unset($cart[$request->id]);
             session()->put('cart', $cart);
         }
-        ;
+
         $this->calculateTotal();
     }
 
+    /**
+     * the checkout method for proceding payments
+     */
     public function checkout()
     {
-        Stripe::setApiKey('sk_test_51PKQiaRsYAsHifft2ULkLgaCIjmoPbLOPvGk93bNSSynMMnVkdc3BoYt9d2lcv3OfVqzDZT1HEvUFAWeBXIz6jyc00UIX3THVE');
+        /**
+         * Stripe API Key (available at .env and provided in Stripe Website dashboard)
+         */
+        Stripe::setApiKey(env('STRIPE_SK'));
 
         $session = \Stripe\Checkout\Session::create([
             'line_items' => [
@@ -80,15 +97,15 @@ class ShopController extends Controller
                     'price_data' => [
                         'currency' => 'USD',
                         'product_data' => [
-                            "name" => 'RANDOM'
+                            'name' => 'RANDOM',
                         ],
                         'unit_amount' => session()->get('total') * 100,
                     ],
                     'quantity' => 1,
-                ]
+                ],
             ],
             'mode' => 'payment',
-            'success_url' => route('products')
+            'success_url' => route('products'),
         ]);
 
         return redirect()->away($session->url);
