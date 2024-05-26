@@ -59,7 +59,7 @@ Route::get('/team', [
 
 Route::get('/goodies', [
     HomeController::class, 'shop',
-])->name('e-commerce');
+])->name('goodies');
 
 Route::get('/goodies/catalogue', [
     HomeController::class, 'products',
