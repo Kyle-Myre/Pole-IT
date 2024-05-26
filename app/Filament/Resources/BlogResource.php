@@ -33,14 +33,9 @@ class BlogResource extends Resource
                     ->required()
                     ->columnSpanFull(),
 
-
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required(),
-
-
                 Forms\Components\TextInput::make('title')
                     ->required()
+                    ->columnSpan(2)
                     ->maxLength(255),
 
                 Forms\Components\RichEditor::make('descriptions')
@@ -57,7 +52,7 @@ class BlogResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table
+        return $table   
             ->columns([
 
                 ImageColumn::make('attachment')->rounded(),

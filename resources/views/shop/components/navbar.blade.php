@@ -19,7 +19,9 @@
             <a href="{{route('register')}}" class="nav-item nav-link">Sign in</a>
             @endif
             <a href="{{route('cart-list')}}" class="nav-item nav-link">
-                <span><i class="bi bi-basket2 h2"></i></span>&nbsp;<span>{{count(session()->get('cart'))}}</span>
+                <span><i class="bi bi-basket2 h2"></i></span>&nbsp;<span>@if (session('cart'))
+                    {{count(session()->get('cart'))}}
+                @else 0 @endif</span>
             </a>
         </div>
     </div>

@@ -72,7 +72,7 @@ class ShopController extends Controller
 
     public function checkout()
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey('sk_test_51PKQiaRsYAsHifft2ULkLgaCIjmoPbLOPvGk93bNSSynMMnVkdc3BoYt9d2lcv3OfVqzDZT1HEvUFAWeBXIz6jyc00UIX3THVE');
 
         $session = \Stripe\Checkout\Session::create([
             'line_items' => [

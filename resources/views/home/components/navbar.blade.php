@@ -22,17 +22,17 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="{{route('home')}}" class="nav-item nav-link active">Home</a>
             <a href="{{route('about')}}" class="nav-item nav-link">About</a>
-            <a href="{{route('home')}}" class="nav-item nav-link">Blogger</a>
+            <a href="{{route('blog')}}" class="nav-item nav-link">Blogger</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu fade-up m-0">
-                    <a href="price.html" class="dropdown-item">Day/night Activities</a>
-                    <a href="{{route('home')}}" class="dropdown-item">different activities</a>
+                    <a href="{{route('blog')}}" class="dropdown-item">Day/night Activities</a>
+                    <a href="{{route('blog')}}" class="dropdown-item">different activities</a>
                     <a href="{{route('e-commerce')}}" class="dropdown-item">Merch</a>
-                    <a href="{{route('home')}}" class="dropdown-item">Our Team</a>
+                    <a href="{{route('team')}}" class="dropdown-item">Our Team</a>
                 </div>
             </div>
-            <a href="contact.html" class="nav-item nav-link">Contact</a>
+            <a href="" class="nav-item nav-link">Contact</a>
         </div>
     </div>
 </nav>

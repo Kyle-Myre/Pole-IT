@@ -1,36 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 @include('home.components.navbar')
-
 <body>
-  
-
-
-   
-
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
-        <div class="container py-5">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page">About</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-    <!-- Page Header End -->
-
-
     <div class="container-fluid overflow-hidden py-5 px-lg-0">
         <div class="container about py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid h-100" src="img1/aboutUs.jpg" style="object-fit: cover; right: 100px;" alt="">
+                        <img class="position-absolute img-fluid h-100" src="{{url('images/aboutUs.jpg')}}" style="object-fit: cover; right: 100px;" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
@@ -146,7 +123,7 @@
                 </div>
                 <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img1/Na_Dec_36.jpg" style="object-fit: cover;" alt="">
+                        <img class="position-absolute img-fluid w-100 h-100" src="{{url('images/Na_Dec_36.jpg')}}" style="object-fit: cover;" alt="">
                     </div>
                 </div>
             </div>
@@ -165,7 +142,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item p-3 text-center">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img1/jawad.PNG" alt="">
+                            <img class="img-fluid" src="{{url('images/jawad.PNG')}}" alt="">
                         </div>
                         <h5 class="mb-0">Nathalan</h5>
                         <p>Designation</p>
@@ -182,7 +159,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item p-3 text-center">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img1/muhy.jpg" alt="">
+                            <img class="img-fluid" src="{{url('images/muhy.jpg')}}" alt="">
                         </div>
                         <h5 class="mb-0">Mohy-Eddine Bouthaim</h5>
                         <p>BackEnd developer</p>
@@ -199,7 +176,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
                     <div class="team-item p-3 text-center">
                         <div class="overflow-hidden mb-4">
-                            <img class="img-fluid" src="img1/jawad2.PNG" alt="">
+                            <img class="img-fluid" src="{{url('images/jawad2.PNG')}}" alt="">
                         </div>
                         <h5 class="mb-0">Abdeljaouad MIMOUNI</h5>
                         <p>FrontEnd developer</p>
